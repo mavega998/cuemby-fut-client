@@ -3,27 +3,30 @@
         <img class="card-img-top" width="80px"
             src="https://cdn-icons-png.flaticon.com/512/3152/3152544.png">
         <div class="card-body">
-            <h5 class="card-title">{{ name }}</h5>
+            <!-- <h5 class="card-title">{{ name }}</h5> -->
+            <div class="card-header">
+                <b>{{ name }}</b>
+            </div>
             <div class="card-subtitle">
-                <ul>
-                    <li>
+                <ul class="list-group">
+                    <li class="list-group-item text-start">
                         <b>Age: </b>
                         <span>{{ age }} years.</span>
                     </li>
-                    <li>
+                    <li class="list-group-item text-start">
                         <b>Position: </b>
                         <span>{{ position }}</span>
                     </li>
-                    <li>
+                    <li class="list-group-item text-start">
                         <b>Club: </b>
                         <span>{{ clubName ? clubName : 'Cargando...' }}</span>
                     </li>
-                    <li>
+                    <li class="list-group-item text-start">
                         <b>Nation: </b>
                         <span>{{ nationName ? nationName : 'Cargando...' }}</span>
                     </li>
                 </ul>
-                <button class="btn btn-info" @click="showDetail">Ver detalle</button>
+                <router-link v-if="showId" :to="`/detail/${id}`" :class="{ disabled: !id }" class="my-3 btn btn-info">Ver detalle</router-link>
             </div>
         </div>
     </div>
@@ -33,6 +36,15 @@ import FutDB from '../services/FutDB.js';
 
 export default {
     props: {
+        showId: {
+            type: Boolean,
+            default: () => { return true }
+        },
+        id: {
+            type: Number,
+            require: true,
+            default: null
+        },
         name: {
             type: String,
             require: true,

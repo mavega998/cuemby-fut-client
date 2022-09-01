@@ -4,11 +4,13 @@
             class="col-2"
             v-for="player in players"
             :key="player.id"
+            :id="player.id"
             :age="player.age"
             :name="player.name"
             :position="player.position"
             :nation="player.nation"
             :club="player.club"
+            :showId="true"
         />
         <ListPages :page="page" :totalPage="totalPages" @currentPage="updatePage"/>
     </div>

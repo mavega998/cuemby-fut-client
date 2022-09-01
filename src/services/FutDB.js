@@ -16,5 +16,8 @@ export default {
     },
     async getClubById(id) {
         return await (await instance.get(`/clubs/${id}`)).data;
-    }
+    },
+    async getPlayerById(id) {
+        return await (await instance.get(`/players/${id}`)).data;
+    } 
 }
